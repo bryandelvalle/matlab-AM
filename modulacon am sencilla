@@ -1,0 +1,26 @@
+clc
+clear
+close all
+fo = 30;
+A = 20;
+Fs = 20e3;
+t = 0:1/Fs:2;
+g = 2000;
+y = A*sin(2*pi*fo*t);
+S(1) = subplot(3, 1, 1);
+plot(t(1:g), y(1:g), 'b',  'Linewidth', 1.5);
+title('\bfSeñal Moduladora');
+ylim([-20 20])
+Fc = 600;
+Ac = 20;
+por = Ac*sin(2*pi*Fc*t);
+S(2) = subplot(3, 1, 2);
+plot(t(1:g), por(1:g), 'b',  'Linewidth', 1.5);
+title('\bfSeñal Portadora');
+ylim([-20 20])
+ym = ammod(y,Fc,Fs,0, Ac);
+S(3) = subplot(3, 1, 3);
+plot(t(1:g), ym(1:g), 'b',  'Linewidth', 1.5)
+title('\bfSeñal modulada');
+ylim([-20 20])
+linkaxes(S, 'x')
